@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Art of Seduction Hub - Искусство обольщения</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #4A0000;
+            --gold: #D4A017;
+            --black: #1A1A1A;
+            --white: #FFFFFF;
+            --pink: #F5C1C1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            background-image: url("ChatGPT Image.png");
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.85);
+            z-index: -1;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 0 10px rgba(212, 160, 23, 0.3);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+        
+        header.scrolled {
+            background: rgba(26, 26, 26, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--pink);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: var(--white);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.8s;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--burgundy);
+            color: var(--white);
+            border: 2px solid var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 1.1s;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(212, 160, 23, 0.3);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover {
+            color: var(--gold);
+            box-shadow: 0 0 20px rgba(212, 160, 23, 0.5);
+        }
+        
+        .btn:hover::before {
+            left: 0;
+        }
+        
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.1;
+            filter: blur(3px);
+        }
+        
+        .petal1 {
+            top: 15%;
+            left: 10%;
+            width: 100px;
+            height: 100px;
+            background: var(--burgundy);
+            border-radius: 50% 0 50% 50%;
+            transform: rotate(45deg);
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .petal2 {
+            top: 60%;
+            right: 15%;
+            width: 150px;
+            height: 150px;
+            background: var(--pink);
+            border-radius: 50% 50% 0 50%;
+            transform: rotate(135deg);
+            animation: float 20s infinite ease-in-out reverse;
+        }
+        
+        .smoke1 {
+            top: 30%;
+            right: 20%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(212, 160, 23, 0.1) 0%, rgba(26, 26, 26, 0) 70%);
+            border-radius: 50%;
+            animation: smoke 25s infinite ease-in-out;
+        }
+        
+        .smoke2 {
+            bottom: 10%;
+            left: 5%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(245, 193, 193, 0.1) 0%, rgba(26, 26, 26, 0) 70%);
+            border-radius: 50%;
+            animation: smoke 30s infinite ease-in-out 5s;
+        }
+        
+        /* Archetypes Section */
+        .archetypes {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, rgba(26, 26, 26, 0.7), rgba(74, 0, 0, 0.3));
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: var(--gold);
+        }
+        
+        .archetype-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .archetype-card {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid rgba(212, 160, 23, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            position: relative;
+            height: 400px;
+            cursor: pointer;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            transform: rotateY(0);
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            transition: transform 0.8s ease;
+        }
+        
+        .card-front {
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            background-color: #4A0000; /* Запасной цвет, если изображение не загрузилось */
+        }
+
+        .card-front::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(26, 26, 26, 0.9), transparent);
+            z-index: 1; /* Убедимся, что градиент поверх изображения */
+        }
+        .card-front h3 {
+            padding: 20px;
+            color: var(--white);
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+        
+        .card-back {
+            background: rgba(26, 26, 26, 0.95);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transform: rotateY(180deg);
+        }
+        
+        .card-front h3 {
+            padding: 20px;
+            color: var(--white);
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 2; /* Заголовок поверх градиента */
+            width: 100%;
+        }
+        
+        .card-back p {
+            color: var(--white);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .archetype-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .archetype-card:hover .card-front {
+            transform: rotateY(-180deg);
+        }
+        
+        .archetype-card:hover .card-back {
+            transform: rotateY(0);
+        }
+        
+        /* Quotes Section */
+        .quotes {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quotes-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .quote-slide {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid rgba(212, 160, 23, 0.3);
+            padding: 40px;
+            margin: 20px;
+            position: relative;
+            display: none;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .quote-slide.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .quote-slide::before, .quote-slide::after {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            color: var(--gold);
+            opacity: 0.3;
+            position: absolute;
+        }
+        
+        .quote-slide::before {
+            top: -20px;
+            left: 20px;
+        }
+        
+        .quote-slide::after {
+            bottom: -70px;
+            right: 20px;
+        }
+        
+        .quote-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .quote-author {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+        }
+        
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(212, 160, 23, 0.3);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-dot.active {
+            background: var(--gold);
+            transform: scale(1.2);
+        }
+        
+        /* Quiz Section */
+        .quiz {
+            padding: 100px 0;
+            background: linear-gradient(to top, rgba(26, 26, 26, 0.7), rgba(74, 0, 0, 0.3));
+        }
+        
+        .quiz-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(26, 26, 26, 0.9);
+            border: 1px solid rgba(212, 160, 23, 0.3);
+            border-radius: 5px;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .quiz-intro, .quiz-questions, .quiz-result {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .quiz-intro.active, .quiz-questions.active, .quiz-result.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .quiz-intro h3 {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .quiz-intro p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .question {
+            margin-bottom: 40px;
+        }
+        
+        .question h4 {
+            font-size: 1.2rem;
+            color: var(--pink);
+            margin-bottom: 15px;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .option {
+            padding: 15px;
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid rgba(212, 160, 23, 0.3);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .option:hover {
+            background: rgba(74, 0, 0, 0.5);
+            border-color: var(--gold);
+        }
+        
+        .option.selected {
+            background: rgba(74, 0, 0, 0.8);
+            border-color: var(--gold);
+        }
+        
+        .progress-container {
+            margin-top: 30px;
+            height: 10px;
+            background: rgba(26, 26, 26, 0.5);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: var(--gold);
+            transition: width 0.5s ease;
+        }
+        
+        .quiz-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .quiz-result h3 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .result-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--gold);
+        }
+        
+        .result-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .result-description {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .result-description p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        /* Store Section */
+        .store {
+            padding: 100px 0;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid rgba(212, 160, 23, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--gold);
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .product:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+        
+        .product-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: var(--burgundy);
+            color: var(--white);
+            border: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .product-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(26, 26, 26, 0.9);
+            padding: 50px 0 20px;
+            border-top: 1px solid var(--gold);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h4 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 160, 23, 0.2);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 160, 23, 0.3);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .inspired {
+            color: var(--gold);
+            font-style: italic;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(45deg);
+            }
+            25% {
+                transform: translate(20px, -15px) rotate(65deg);
+            }
+            50% {
+                transform: translate(-10px, 20px) rotate(25deg);
+            }
+            75% {
+                transform: translate(-20px, -10px) rotate(45deg);
+            }
+        }
+        
+        @keyframes smoke {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.1;
+            }
+            25% {
+                transform: translate(20px, -30px) scale(1.2);
+                opacity: 0.15;
+            }
+            50% {
+                transform: translate(-30px, -50px) scale(1.4);
+                opacity: 0.1;
+            }
+            75% {
+                transform: translate(-20px, -20px) scale(1.1);
+                opacity: 0.05;
+            }
+        }
+        
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .archetype-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .options {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(26, 26, 26, 0.95);
+                flex-direction: column;
+                padding: 20px 0;
+                border-top: 1px solid var(--gold);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">The Art of <span>Seduction</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="#archetypes">Архетипы</a></li>
+                        <li><a href="#quotes">Цитаты</a></li>
+                        <li><a href="#quiz">Тест</a></li>
+                        <li><a href="#store">Магазин</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="floating-element petal1"></div>
+        <div class="floating-element petal2"></div>
+        <div class="floating-element smoke1"></div>
+        <div class="floating-element smoke2"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1>Искусство обольщения</h1>
+                <p>Погрузитесь в увлекательный мир соблазнения по книге Роберта Грина. Откройте для себя силу притяжения, власти и страсти.</p>
+                <a href="#archetypes" class="btn">Погрузиться</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="archetypes" class="archetypes">
+        <div class="container">
+            <h2 class="section-title">Архетипы соблазнителей</h2>
+            
+            <div class="archetype-grid">
+                <div class="archetype-card" data-type="siren">
+                    <div class="card-front" >
+                        <h3>Сирена</h3>
+                        <img src="siren.jpg"  style="opacity: 0.7;position: absolute;" alt="">
+                        
+                    </div>
+                    <div class="card-back">
+                        <h3>Сирена</h3>
+                        <p>Воплощение мужской фантазии о беззаботной, сексуальной и опасной женщине. Сирена привлекает силой своей необузданной женственности и обещанием безграничного удовольствия.</p>
+                    </div>
+                </div>
+                
+                <div class="archetype-card" data-type="rake">
+                    <div class="card-front">
+                        <h3>Распутник</h3>
+                        <img src="rake.jpg"  style="opacity: 0.7;position: absolute;" alt="">
+                    </div>
+                    <div class="card-back">
+                        <h3>Распутник</h3>
+                        <p>Неисправимый любитель женщин, которого движет страсть к женскому полу. Его обаяние заключается в неуёмном желании, настойчивости и способности сделать каждую женщину центром вселенной.</p>
+                    </div>
+                </div>
+                
+                <div class="archetype-card" data-type="ideal-lover">
+                    <div class="card-front">
+                        <h3>Идеальный любовник</h3>
+                        <img src="lover.jpg"  style="opacity: 0.7;position: absolute;" alt="">
+                    </div>
+                    <div class="card-back">
+                        <h3>Идеальный любовник</h3>
+                        <p>Способен предчувствовать и удовлетворять глубочайшие желания других. Он создаёт атмосферу романтики и внимания к деталям, заполняя пустоту в душе объекта своего внимания.</p>
+                    </div>
+                </div>
+                
+                <div class="archetype-card" data-type="dandy">
+                    <div class="card-front" >
+                        <h3>Денди</h3>
+                        <img src="dandy.jpg"  style="opacity: 0.7;position: absolute;" alt="">
+                    </div>
+                    <div class="card-back">
+                        <h3>Денди</h3>
+                        <p>Соблазняет своей независимостью и самодостаточностью. Денди смешивает мужские и женские качества, создавая загадочный и притягательный образ, нарушающий общепринятые нормы.</p>
+                    </div>
+                </div>
+                
+                <div class="archetype-card" data-type="natural">
+                    <div class="card-front" >
+                        <h3>Естественный соблазнитель</h3>
+                        <img src="natural.jpg"  style="opacity: 0.7;position: absolute;" alt="">
+                    </div>
+                    <div class="card-back">
+                        <h3>Естественный соблазнитель</h3>
+                        <p>Его сила в спонтанности и непосредственности. Естественный соблазнитель обладает детской энергией, беззаботностью и жизнерадостностью, которая редко встречается у взрослых.</p>
+                    </div>
+                </div>
+                
+                <div class="archetype-card" data-type="coquette">
+                    <div class="card-front" >
+                        <h3>Кокетка</h3>
+                        <img src="coqet.jpg"  style="opacity: 0.7;position: absolute;" alt="">
+                    </div>
+                    <div class="card-back">
+                        <h3>Кокетка</h3>
+                        <p>Мастер игры в горячо-холодно, Кокетка завлекает своей неуловимостью и непредсказуемостью. Баланс между надеждой и отчаянием делает её неотразимой.</p>
+                    </div>
+                </div>
+                
+                <div class="archetype-card" data-type="charismatic">
+                    <div class="card-front" >
+                        <h3>Харизматик</h3>
+                        <img src="charmer.jpg"  style="opacity: 0.7;position: absolute;" alt="">
+                    </div>
+                    <div class="card-back">
+                        <h3>Харизматик</h3>
+                        <p>Обладает таинственной силой притяжения и уверенностью, которая магнетически действует на окружающих. Харизматик фокусируется на других, заставляя их чувствовать себя особенными и значимыми.</p>
+                    </div>
+                </div>
+                
+                <div class="archetype-card" data-type="star">
+                    <div class="card-front" >
+                        <h3>Звезда</h3>
+                        <img src="star.jpg"  style="opacity: 0.7;position: absolute;" alt="">
+                    </div>
+                    <div class="card-back">
+                        <h3>Звезда</h3>
+                        <p>Притягивает восхищенные взгляды своей яркостью и недостижимостью. Звезда создает вокруг себя ауру особенности и исключительности, превращая свою жизнь в спектакль.</p>
+                    </div>
+                </div>
+                
+                <div class="archetype-card" data-type="anti-seducer">
+                    <div class="card-front" style="background-image: url('/api/placeholder/400/600')">
+                        <h3>Анти-соблазнитель</h3>
+                    </div>
+                    <div class="card-back">
+                        <h3>Анти-соблазнитель</h3>
+                        <p>Отталкивает своей неуверенностью, навязчивостью или неуместностью. Понимание качеств анти-соблазнителя помогает избежать типичных ошибок на пути к мастерству обольщения.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="quotes" class="quotes">
+        <div class="container">
+            <h2 class="section-title">Цитаты из книги</h2>
+            
+            <div class="quotes-slider">
+                <div class="quote-slide active">
+                    <p class="quote-text">Соблазнение — это форма убеждения и убеждение — это форма соблазнения.</p>
+                    <p class="quote-author">Роберт Грин</p>
+                </div>
+                
+                <div class="quote-slide">
+                    <p class="quote-text">Научитесь работать с реальностью, а не против неё. Главная ошибка — желание изменить или контролировать объект соблазнения.</p>
+                    <p class="quote-author">Роберт Грин</p>
+                </div>
+                
+                <div class="quote-slide">
+                    <p class="quote-text">Самая мощная форма соблазнения заключается не в том, чтобы отвлечь внимание, а в том, чтобы заставить людей потерять контроль над своими эмоциями.</p>
+                    <p class="quote-author">Роберт Грин</p>
+                </div>
+                
+                <div class="quote-slide">
+                    <p class="quote-text">Научитесь увеличивать свою привлекательность, создавая вокруг себя ауру недоступности и опасности.</p>
+                    <p class="quote-author">Роберт Грин</p>
+                </div>
+                
+                <div class="quote-slide">
+                    <p class="quote-text">Обыденность и предсказуемость — два главных врага соблазнения.</p>
+                    <p class="quote-author">Роберт Грин</p>
+                </div>
+                
+                <div class="slider-nav">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                    <div class="slider-dot" data-slide="2"></div>
+                    <div class="slider-dot" data-slide="3"></div>
+                    <div class="slider-dot" data-slide="4"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="quiz" class="quiz">
+        <div class="container">
+            <h2 class="section-title">Кто ты из соблазнителей?</h2>
+            
+            <div class="quiz-container">
+                <div class="quiz-intro active">
+                    <h3>Определи свой архетип соблазнителя</h3>
+                    <p>Пройди наш тест и узнай, к какому типу соблазнителей по классификации Роберта Грина ты относишься. Готов познать свою истинную природу?</p>
+                    <button class="btn start-quiz">Начать тест</button>
+                </div>
+                
+                <div class="quiz-questions">
+                    <div class="question" id="question-1">
+                        <h4>1. Что для тебя наиболее важно при взаимодействии с объектом симпатии?</h4>
+                        <div class="options">
+                            <div class="option" data-value="siren">Создать атмосферу страсти и интриги</div>
+                            <div class="option" data-value="ideal-lover">Предугадать и удовлетворить его/её потребности</div>
+                            <div class="option" data-value="dandy">Оставаться независимым и уникальным</div>
+                            <div class="option" data-value="charismatic">Завладеть полным вниманием собеседника</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question" id="question-2" style="display: none;">
+                        <h4>2. Какую роль ты обычно выбираешь в отношениях?</h4>
+                        <div class="options">
+                            <div class="option" data-value="rake">Страстный преследователь, готовый на всё</div>
+                            <div class="option" data-value="coquette">Загадочный и непредсказуемый партнёр</div>
+                            <div class="option" data-value="star">Яркая и заметная личность</div>
+                            <div class="option" data-value="natural">Искренний и непосредственный друг</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question" id="question-3" style="display: none;">
+                        <h4>3. Что, по твоему мнению, делает тебя привлекательным?</h4>
+                        <div class="options">
+                            <div class="option" data-value="siren">Чувственность и сексуальность</div>
+                            <div class="option" data-value="dandy">Стиль и неординарность</div>
+                            <div class="option" data-value="charismatic">Уверенность и сила характера</div>
+                            <div class="option" data-value="natural">Открытость и жизнерадостность</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question" id="question-4" style="display: none;">
+                        <h4>4. Какую стратегию ты используешь, чтобы привлечь внимание?</h4>
+                        <div class="options">
+                            <div class="option" data-value="rake">Проявляю настойчивый интерес и внимание</div>
+                            <div class="option" data-value="coquette">Чередую внимание с холодностью</div>
+                            <div class="option" data-value="ideal-lover">Создаю романтическую атмосферу</div>
+                            <div class="option" data-value="star">Привлекаю внимание своей яркостью</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question" id="question-5" style="display: none;">
+                        <h4>5. Что ты считаешь своим главным инструментом соблазнения?</h4>
+                        <div class="options">
+                            <div class="option" data-value="charismatic">Силу личности и харизму</div>
+                            <div class="option" data-value="siren">Физическую привлекательность</div>
+                            <div class="option" data-value="dandy">Оригинальность и свободу от условностей</div>
+                            <div class="option" data-value="ideal-lover">Умение слушать и понимать</div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                    
+                    <div class="quiz-nav">
+                        <button class="btn prev-question" style="display: none;">Назад</button>
+                        <button class="btn next-question">Далее</button>
+                    </div>
+                </div>
+                
+                <div class="quiz-result">
+                    <h3 id="result-title">Ваш архетип: <span>Идеальный любовник</span></h3>
+                    
+                    <div class="result-image">
+                        <img src="/api/placeholder/400/400" alt="Архетип соблазнителя" id="result-image">
+                    </div>
+                    
+                    <div class="result-description">
+                        <p id="result-text">Вы обладаете редким даром понимать глубинные желания и потребности других людей. Ваша сила в способности создавать идеальную романтическую атмосферу и становиться тем, кого жаждет встретить объект вашего внимания.</p>
+                        <p>Вы внимательны к деталям, умеете слушать и запоминать то, что важно для другого человека. Ваша чувствительность и эмпатия делают вас мастером удовлетворения эмоциональных потребностей.</p>
+                    </div>
+                    
+                    <button class="btn restart-quiz">Пройти тест заново</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="store" class="store">
+        <div class="container">
+            <h2 class="section-title">Магазин</h2>
+            
+            <div class="products">
+                <div class="product">
+                    <div class="product-image">
+                        <img src="the art of seduction.jpg" alt="Книга 'Искусство обольщения'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Книга "Искусство обольщения"</h3>
+                        <p class="product-price">2 500 ₽</p>
+                        <button class="product-btn">В корзину</button>
+                    </div>
+                </div>
+                
+                <div class="product">
+                    <div class="product-image">
+                        <img src="ChatGPT audio.png" alt="Аудиокнига 'Искусство обольщения'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Аудиокнига</h3>
+                        <p class="product-price">1 800 ₽</p>
+                        <button class="product-btn">В корзину</button>
+                    </div>
+                </div>
+                
+                <div class="product">
+                    <div class="product-image">
+                        <img src="набор.png" alt="Набор 'Соблазнитель'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Набор "Соблазнитель"</h3>
+                        <p class="product-price">4 500 ₽</p>
+                        <button class="product-btn">В корзину</button>
+                    </div>
+                </div>
+                
+                <div class="product">
+                    <div class="product-image">
+                        <img src="note.png" alt="Блокнот 'Искусство обольщения'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Блокнот с цитатами</h3>
+                        <p class="product-price">850 ₽</p>
+                        <button class="product-btn">В корзину</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>О проекте</h4>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Миссия</a></li>
+                        <li><a href="#">Контакты</a></li>
+                        <li><a href="#">Блог</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Ресурсы</h4>
+                    <ul>
+                        <li><a href="#">Статьи</a></li>
+                        <li><a href="#">Видео</a></li>
+                        <li><a href="#">Подкасты</a></li>
+                        <li><a href="#">Практики</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Подписка</h4>
+                    <p>Подпишитесь на нашу рассылку, чтобы получать новости и эксклюзивные материалы:</p>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Ваш email" required>
+                        <button type="submit" class="btn">Подписаться</button>
+                    </form>
+                    <div class="social-links">
+                        <a href="#"><span>FB</span></a>
+                        <a href="#"><span>TW</span></a>
+                        <a href="#"><span>IG</span></a>
+                        <a href="#"><span>TG</span></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 The Art of Seduction Hub. Все права защищены. <span class="inspired">Inspired by Robert Greene</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Quotes Slider
+        const quoteSlides = document.querySelectorAll('.quote-slide');
+        const sliderDots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        
+        function showSlide(index) {
+            quoteSlides.forEach(slide => slide.classList.remove('active'));
+            sliderDots.forEach(dot => dot.classList.remove('active'));
+            
+            quoteSlides[index].classList.add('active');
+            sliderDots[index].classList.add('active');
+            currentSlide = index;
+        }
+        
+        sliderDots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const slideIndex = parseInt(this.getAttribute('data-slide'));
+                showSlide(slideIndex);
+            });
+        });
+        
+        // Auto slide change
+        setInterval(() => {
+            let nextSlide = currentSlide + 1;
+            if (nextSlide >= quoteSlides.length) {
+                nextSlide = 0;
+            }
+            showSlide(nextSlide);
+        }, 5000);
+        
+        // Quiz Functionality
+        const startQuizBtn = document.querySelector('.start-quiz');
+        const quizIntro = document.querySelector('.quiz-intro');
+        const quizQuestions = document.querySelector('.quiz-questions');
+        const quizResult = document.querySelector('.quiz-result');
+        const questions = document.querySelectorAll('.question');
+        const nextBtn = document.querySelector('.next-question');
+        const prevBtn = document.querySelector('.prev-question');
+        const progressBar = document.querySelector('.progress-bar');
+        const restartBtn = document.querySelector('.restart-quiz');
+        
+        let currentQuestion = 0;
+        let userAnswers = {};
+        
+        startQuizBtn.addEventListener('click', function() {
+            quizIntro.classList.remove('active');
+            quizQuestions.classList.add('active');
+            updateProgress();
+        });
+        
+        nextBtn.addEventListener('click', function() {
+            const selectedOption = document.querySelector(`#question-${currentQuestion + 1} .option.selected`);
+            
+            if (!selectedOption) {
+                alert('Пожалуйста, выберите один из вариантов');
+                return;
+            }
+            
+            userAnswers[currentQuestion] = selectedOption.getAttribute('data-value');
+            
+            if (currentQuestion < questions.length - 1) {
+                questions[currentQuestion].style.display = 'none';
+                currentQuestion++;
+                questions[currentQuestion].style.display = 'block';
+                
+                if (currentQuestion > 0) {
+                    prevBtn.style.display = 'block';
+                }
+                
+                if (currentQuestion === questions.length - 1) {
+                    nextBtn.textContent = 'Завершить';
+                }
+                
+                updateProgress();
+            } else {
+                // Show result
+                quizQuestions.classList.remove('active');
+                showResult();
+                quizResult.classList.add('active');
+            }
+        });
+        
+        prevBtn.addEventListener('click', function() {
+            questions[currentQuestion].style.display = 'none';
+            currentQuestion--;
+            questions[currentQuestion].style.display = 'block';
+            
+            if (currentQuestion === 0) {
+                prevBtn.style.display = 'none';
+            }
+            
+            nextBtn.textContent = 'Далее';
+            
+            updateProgress();
+        });
+        
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const parent = this.parentNode;
+                parent.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                this.classList.add('selected');
+            });
+        });
+        
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+        
+        function showResult() {
+            // Count archetype occurrences
+            const archetypeCounts = {};
+            
+            for (const question in userAnswers) {
+                const archetype = userAnswers[question];
+                archetypeCounts[archetype] = (archetypeCounts[archetype] || 0) + 1;
+            }
+            
+            // Find the dominant archetype
+            let dominantArchetype = '';
+            let maxCount = 0;
+            
+            for (const archetype in archetypeCounts) {
+                if (archetypeCounts[archetype] > maxCount) {
+                    maxCount = archetypeCounts[archetype];
+                    dominantArchetype = archetype;
+                }
+            }
+            
+            // Show the result
+            const archetypeData = {
+                'siren': {
+                    name: 'Сирена',
+                    description: 'Вы привлекаете силой своей необузданной женственности или мужественности. Ваш магнетизм основан на чувственности и обещании безграничного удовольствия, что делает вас неотразимым объектом желания.'
+                },
+                'rake': {
+                    name: 'Распутник',
+                    description: 'Вас движет неукротимая страсть и желание. Ваша сила в настойчивости и способности сделать объект своего внимания центром вселенной, заставляя его/её чувствовать себя единственным и неповторимым.'
+                },
+                'ideal-lover': {
+                    name: 'Идеальный любовник',
+                    description: 'Вы обладаете редким даром понимать глубинные желания других. Ваша сила в способности создавать идеальную романтическую атмосферу и становиться тем, кого жаждет встретить объект вашего внимания.'
+                },
+                'dandy': {
+                    name: 'Денди',
+                    description: 'Вы соблазняете своей независимостью и уникальностью. Ваша способность смешивать противоположные качества создает загадочный и притягательный образ, нарушающий общепринятые нормы.'
+                },
+                'natural': {
+                    name: 'Естественный соблазнитель',
+                    description: 'Ваша сила в спонтанности и непосредственности. Вы обладаете редкой детской энергией и беззаботностью, которая притягивает людей, уставших от условностей и напряжения повседневной жизни.'
+                },
+                'coquette': {
+                    name: 'Кокетка',
+                    description: 'Вы мастер игры в "горячо-холодно". Ваша неуловимость и непредсказуемость создает идеальный баланс между надеждой и отчаянием, что делает вас невероятно притягательным и желанным.'
+                },
+                'charismatic': {
+                    name: 'Харизматик',
+                    description: 'Вы обладаете таинственной силой притяжения и уверенностью, которая действует магнетически. Ваш фокус на других, умение заставить их чувствовать себя особенными создает неразрывную эмоциональную связь.'
+                },
+                'star': {
+                    name: 'Звезда',
+                    description: 'Вы притягиваете восхищенные взгляды своей яркостью и кажущейся недостижимостью. Вы создаете вокруг себя ауру особенности, превращая свою жизнь в захватывающий спектакль, на который невозможно не смотреть.'
+                }
+            };
+            
+            document.querySelector('#result-title span').textContent = archetypeData[dominantArchetype].name;
+            document.querySelector('#result-text').textContent = archetypeData[dominantArchetype].description;
+        }
+        
+        restartBtn.addEventListener('click', function() {
+            // Reset quiz
+            quizResult.classList.remove('active');
+            quizIntro.classList.add('active');
+            
+            // Reset selected options
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Reset questions
+            currentQuestion = 0;
+            userAnswers = {};
+            questions.forEach((question, index) => {
+                if (index === 0) {
+                    question.style.display = 'block';
+                } else {
+                    question.style.display = 'none';
+                }
+            });
+            
+            // Reset buttons
+            nextBtn.textContent = 'Далее';
+            prevBtn.style.display = 'none';
+            
+            // Reset progress
+            progressBar.style.width = '0%';
+        });
+        
+        // Product hover effect
+        const products = document.querySelectorAll('.product');
+        
+        products.forEach(product => {
+            product.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.4)';
+                this.style.borderColor = 'var(--gold)';
+            });
+            
+            product.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+                this.style.borderColor = 'rgba(212, 160, 23, 0.3)';
+            });
+        });
+        
+        // Initialize
+        function init() {
+            // Set initial archetypes card background images (in a real project these would be actual images)
+            document.querySelectorAll('.card-front').forEach(card => {
+                const type = card.parentNode.getAttribute('data-type');
+                card.style.backgroundImage = `url('/api/placeholder/400/600')`;
+            });
+        }
+        
+        // Run initialization
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
